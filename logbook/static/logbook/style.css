@@ -7,5 +7,32 @@ margin: 0 auto; /* This is a magic trick to center a block element */
 padding:20px;/* Adds some space around the inside of the container */
 background-color: white;/* Give it a white background to stand out */
 border-radius: 8px;/* Rounds the corners*/
-
+}
+/* Style the navigation bar */
+nav {
+background-color: #333;/*A dark background for the navbar*/
+padding: 10px 0;/*10px of padding on top and bottom 0 on the sides*/
+margin-bottom: 20px;/* Pushes the main content down a bit*/
+}
+/*style the unordered list inside the nav*/
+nav ul{
+list-style-type: none; /*Removes the bullet */
+padding: 0;
+margin: 0;
+text-align: center;/*centers the list items*/
+}
+/* style the list items*/
+nav li {
+display: inline; /* makes the list items sit side-by-side*/
+margin: 0 15px;/*adds some space between the list items*/
+}
+/* style the links inside the nave */
+nav a{
+color: white;/*Makes the link text white*/
+text-decoration: none;/*Removes the underline */
+font-weight: bold;/*Makes the font bold*/
+}
+/*Change the link color when you hover over it */
+nav a:hover {
+color: #b7d7f4;/* The light blue color you chose earlier*/
 }
