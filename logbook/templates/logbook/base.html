@@ -16,10 +16,13 @@
 <li> <a href="{% url 'create-quest' %}"> create a Quest </a> </li>
 
 </ul></nav>
+<!-- store the main content inside a container for css -->
+<main class="container">
 <!--create a block for my child templates-->
 {% block content %}
 <h1>these are my favorit characters in videogame</h1>
 
 {% endblock %}
+</main>
 </body>
 </html>

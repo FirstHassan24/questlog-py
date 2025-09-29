@@ -1,0 +1,11 @@
+body {
+    background-color: #b7d7f4;/* A nice, light aliceblue color */
+}
+.container{
+max-width: 800px; /* The content wont get wider than 800 pixel */
+margin: 0 auto; /* This is a magic trick to center a block element */
+padding:20px;/* Adds some space around the inside of the container */
+background-color: white;/* Give it a white background to stand out */
+border-radius: 8px;/* Rounds the corners*/
+
+}
