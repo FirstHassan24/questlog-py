@@ -6,7 +6,7 @@
 <!-- loops over each dict inside the list-->
 {% for servant in servants %}
 <!--create a link for the servant_details page-->
-    <li> <a href="{% url 'servant_details' %}"> {{servant.name}} </a> </li>
+    <li> <a href="{% url 'servant_details' pk=servant.pk %}"> {{servant.name}} </a> </li>
 <!--grab each servantes information -->
     <li>{{servant.name}} class{{servant.class_type}} {{servant.rarity}}</li>
     {% if servant.name == "Arjuna alter" %}
