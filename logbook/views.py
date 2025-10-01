@@ -84,3 +84,13 @@ def summon_servant(request):
         context = {"form":form}
         #render the template passing it the form:
         return render(request,"logbook/summon_servant.html",context)
+
+#sends the user to the detailed page of the servant
+def servant_details(request,pk):
+    #get the servant object whoes primary key(pk) matches the url key(pk) 
+    chosen_servant = Servant.objects.get(pk=pk)
+    #create a context dictionary to pass this single servant to the template:
+    context = {"chosen_servant":chosen_servant}
+    return render(request,"logbook/servant_details.html",context)
+
+
