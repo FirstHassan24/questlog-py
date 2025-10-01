@@ -19,10 +19,12 @@ urlpatterns = [
     # --- Servant URLs ---
     # URL for the list of all servants. Calls the 'servant_list' view.
     path("servants/", views.servant_list, name="servant-list"),
+      #URL for summoning servants. calls the summon_servant view
+    path("summon/servant",views.summon_servant,name="summon-servant"),
+    #create the url then capture the int(pk) and pass it to the views: 
+    path("servant/<int:pk>/",views.servant_details,name="servant-details"),
 
     # --- Construct URLs ---
     # URL for the list of all constructs. Calls the 'construct_list' view.
     path("constructs/", views.construct_list, name="construct-list"),
-    #URL for summoning servants. calls the summon_servant view
-    path("summon/servant",views.summon_servant,name="summon-servant")
 ]
