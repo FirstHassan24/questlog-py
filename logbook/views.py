@@ -79,8 +79,8 @@ def summon_servant(request):
             #redrict the user to the servant page to see the change:
             return redirect("servant-list")
         #if the request is a GET(user just entered page) show the form:
-        else:
-            form = ServantForm()
-            context = {"form":form}
-            #render the template passing it the form:
-            return render(request,"logbook/summon_servant.html",context)
+    else:
+        form = ServantForm()
+        context = {"form":form}
+        #render the template passing it the form:
+        return render(request,"logbook/summon_servant.html",context)
