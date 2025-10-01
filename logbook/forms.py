@@ -1,6 +1,6 @@
 #lets me make a form for my models(dont have to use admin)
 from django import forms
-from .models import Quest
+from .models import Quest,Servant
 
 # This class defines the structure of the form used to create a new Quest.
 # It's a ModelForm, which means Django will automatically build the form fields
@@ -13,3 +13,11 @@ class QuestForm(forms.ModelForm):
         model = Quest
         # Include all fields from the Quest model in the form.
         fields = '__all__'
+
+#defines the structure needed to make a new servant
+class ServantForm(forms.ModelForm):
+    class Meta:
+        #specify this form is for servants
+        model = Servant
+        #includes all the field from servant model
+        fields = "__all__"

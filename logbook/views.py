@@ -1,7 +1,7 @@
 # Import necessary functions and classes from Django and the current app.
 from django.shortcuts import render, redirect
 from .models import Quest, Servant, Construct
-from .forms import QuestForm
+from .forms import QuestForm, ServantForm
 
 # This view handles the request for the home page.
 # It doesn't need any data from the models, it just shows the base template.
@@ -66,3 +66,21 @@ def construct_list(request):
     constructs = Construct.objects.all()
     context = {"constructs": constructs}
     return render(request, "logbook/construct_list.html", context)
+
+#this view handles displaying the servant and proccessing the submited data:
+def summon_servant(request):
+    #check if the user submited any data:
+    if request.method == "POST":
+        #create a form instance and populate it with the user data:
+        form = ServantForm(request.POST)
+            #check if the form is valid and save it
+        if form.is_valid():
+            form.save()
+            #redrict the user to the servant page to see the change:
+            return redirect("servant-list")
+        #if the request is a GET(user just entered page) show the form:
+        else:
+            form = ServantForm()
+            context = {"form":form}
+            #render the template passing it the form:
+            return render(request,"logbook/summon_servant.html",context)
