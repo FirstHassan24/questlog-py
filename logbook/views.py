@@ -103,7 +103,7 @@ def servant_details(request,pk):
         servant_data = response.json()
         if servant_data:#checks if the list is not empty
             first_servant = servant_data[0]
-            image_url = first_servant["extraAssets"]["faces"]["1"]
+            image_url = first_servant["extraAssets"]["faces"]["ascension"]["1"]
         else:
         #the search was successful but returned no results
             print("API returned no servants for that name.")
