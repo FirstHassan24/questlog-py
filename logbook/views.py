@@ -90,6 +90,7 @@ def summon_servant(request):
 def servant_details(request,pk):
     #get the servant object whoes primary key(pk) matches the url key(pk) 
     chosen_servant = Servant.objects.get(pk=pk)
+    image_url = None#default value incase it fails
     #create a api url to atlas to search for specific servants:
     api_url = "https://api.atlasacademy.io/nice/NA/servant/search"
     #specify the name of the servant to import:
@@ -102,17 +103,20 @@ def servant_details(request,pk):
         servant_data = response.json()
         if servant_data:#checks if the list is not empty
             first_servant = servant_data[0]
+            image_url = first_servant["extraAssets"]["faces"]["1"]
         else:
         #the search was successful but returned no results
             print("API returned no servants for that name.")
     else:
         #The API call itself failed:
-        praint("API request failed with status code:",response.status_code)
+        print("API request failed with status code:",response.status_code)
 
     #display the data in terminal:
-    print(servant_data)
+    # print(servant_data)
     #create a context dictionary to pass this single servant to the template:
     context = {"chosen_servant":chosen_servant}
+    #grab the servants image from the API
+    context["servant_image"] = image_url
     return render(request,"logbook/servant_details.html",context)
 
 
