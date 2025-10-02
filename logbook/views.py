@@ -2,6 +2,7 @@
 from django.shortcuts import render, redirect
 from .models import Quest, Servant, Construct
 from .forms import QuestForm, ServantForm
+import requests
 
 # This view handles the request for the home page.
 # It doesn't need any data from the models, it just shows the base template.
@@ -89,6 +90,27 @@ def summon_servant(request):
 def servant_details(request,pk):
     #get the servant object whoes primary key(pk) matches the url key(pk) 
     chosen_servant = Servant.objects.get(pk=pk)
+    #create a api url to atlas to search for specific servants:
+    api_url = "https://api.atlasacademy.io/nice/NA/servant/search"
+    #specify the name of the servant to import:
+    params = {"name": chosen_servant.name}
+    #send the request to the API:
+    response = requests.get(api_url,params=params) 
+     #check if our request whent through and get the right code:
+    if response.status_code == 200:
+        #convert the json data into python:
+        servant_data = response.json()
+        if servant_data:#checks if the list is not empty
+            first_servant = servant_data[0]
+        else:
+        #the search was successful but returned no results
+            print("API returned no servants for that name.")
+    else:
+        #The API call itself failed:
+        praint("API request failed with status code:",response.status_code)
+
+    #display the data in terminal:
+    print(servant_data)
     #create a context dictionary to pass this single servant to the template:
     context = {"chosen_servant":chosen_servant}
     return render(request,"logbook/servant_details.html",context)
