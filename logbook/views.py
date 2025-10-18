@@ -1,5 +1,5 @@
 # Import necessary functions and classes from Django and the current app.
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from .models import Quest, Servant, Construct
 from .forms import QuestForm, ServantForm
 import requests
@@ -59,14 +59,6 @@ def servant_list(request):
     servants = Servant.objects.all()
     context = {"servants": servants}
     return render(request, "logbook/servant_list.html", context)
-
-# --- Construct Views ---
-
-# This view handles the page that lists all the Constructs.
-def construct_list(request):
-    constructs = Construct.objects.all()
-    context = {"constructs": constructs}
-    return render(request, "logbook/construct_list.html", context)
 
 #this view handles displaying the servant and proccessing the submited data:
 def summon_servant(request):
@@ -140,5 +132,23 @@ def servant_details(request,pk):
     #grab the servants image from the API
     context["servant_image"] = image_url
     return render(request,"logbook/servant_details.html",context)
+def delete_servant(request,pk):
+    if request.method =="POST":
+        #find the servant you summoned 
+        servant = get_object_or_404(Fgo,pk=pk)
+        #remove it from the DB:
+        servant.delete()
+        #refreshes the page:
+        return redirect("servant_list.html")
+
+
+# --- Construct Views ---
+
+# This view handles the page that lists all the Constructs.
+def construct_list(request):
+    constructs = Construct.objects.all()
+    context = {"constructs": constructs}
+    return render(request, "logbook/construct_list.html", context)
+
 
 

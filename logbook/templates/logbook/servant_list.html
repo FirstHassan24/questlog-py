@@ -6,8 +6,11 @@
 <!-- loops over each dict inside the list-->
 {% for servant in servants %}
 <!--create a link for the servant_details page-->
-    <li> <a href="{% url 'servant-details' pk=servant.pk %}"> {{servant.name}} </a> </li>
-    
+    <li> <a href="{% url 'servant-details' pk=servant.pk %}"> {{servant.name}} </a>
+    <!--create a form to delete a servant:-->
+<form methode="POST",action="{url 'delete_servant' servant.pk}"> <button type="submit">Delete</button>
+</form> 
+</li>
 {% endfor %}
 </ul>
 {% endblock %}
