@@ -133,13 +133,13 @@ def servant_details(request,pk):
     context["servant_image"] = image_url
     return render(request,"logbook/servant_details.html",context)
 def delete_servant(request,pk):
+     #find the servant you summoned 
+    servant = get_object_or_404(Fgo,pk=pk)
     if request.method =="POST":
-        #find the servant you summoned 
-        servant = get_object_or_404(Fgo,pk=pk)
         #remove it from the DB:
         servant.delete()
         #refreshes the page:
-        return redirect("servant_list.html")
+        return redirect("servant-list")
 
 
 # --- Construct Views ---
